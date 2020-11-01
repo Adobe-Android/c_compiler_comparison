@@ -1,6 +1,6 @@
 # tool macros
 CC := # intentionally not used for the comparison of compilers
-CCFLAGS := -Os
+CCFLAGS := -Os -s
 DBGFLAGS := # -g
 CCOBJFLAGS := $(CCFLAGS) -c
 
@@ -14,15 +14,15 @@ default: makedir all
 
 # non-phony targets
 $(BIN_PATH)/gcc-hello: $(OBJ_PATH)/gcc-hello.o
-	gcc -Os obj/gcc-hello.o -o bin/gcc-hello -s
-	gcc -Os obj/gcc-hello.o -o bin/gcc-hello-static -s -static
+	gcc $(CCFLAGS) $(DBGFLAGS) $(OBJ_PATH)/gcc-hello.o -o $(BIN_PATH)/gcc-hello
+	gcc $(CCFLAGS) $(DBGFLAGS) $(OBJ_PATH)/gcc-hello.o -o $(BIN_PATH)/gcc-hello-static -static
 
 $(BIN_PATH)/musl-hello: $(OBJ_PATH)/musl-hello.o
-	musl-gcc -Os obj/musl-hello.o -o bin/musl-hello -s
-	musl-gcc -Os obj/musl-hello.o -o bin/musl-hello-static -s -static
+	musl-gcc $(CCFLAGS) $(DBGFLAGS) $(OBJ_PATH)/musl-hello.o -o $(BIN_PATH)/musl-hello
+	musl-gcc $(CCFLAGS) $(DBGFLAGS) $(OBJ_PATH)/musl-hello.o -o $(BIN_PATH)/musl-hello-static -static
 
 $(BIN_PATH)/tcc-hello: $(OBJ_PATH)/tcc-hello.o
-	tcc obj/tcc-hello.o -o bin/tcc-hello
+	tcc $(OBJ_PATH)/tcc-hello.o -o $(BIN_PATH)/tcc-hello
 
 $(OBJ_PATH)/gcc-hello.o: $(SRC_PATH)/hello.c
 	gcc $(CCOBJFLAGS) $(DBGFLAGS) $(SRC_PATH)/hello.c -o $(OBJ_PATH)/gcc-hello.o
