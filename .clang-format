@@ -1,6 +1,8 @@
 # Defines the Google style for automatic reformatting.
 # http://clang.llvm.org/docs/ClangFormatStyleOptions.html
 
-BasedOnStyle:  Google
-# This defaults to 80.
-ColumnLimit:     100
+# Run manually to reformat a file:
+# clang-format -i --style=file <file>
+BasedOnStyle: Google
+# ColumnLimit defaults to 80.
+ColumnLimit: 100
